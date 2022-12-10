@@ -17,7 +17,7 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
 
 
 fun <T> List<T>.toPair(): Pair<T, T> {
-    require(this.size == 2) { "List is not of length 2!" }
+    require(this.size == 2) { "List ${this} is not of length 2!" }
     val (a, b) = this
     return Pair(a, b)
 }
