@@ -22,6 +22,7 @@ fun <T> List<T>.toPair(): Pair<T, T> {
     return Pair(a, b)
 }
 
+fun <T> to2DList(input: List<String>, converter: (String) -> List<T>) = input.map { converter(it) }
 
 class Memoize<in T, out R>(val f: (T) -> R) : (T) -> R {
     private val values = mutableMapOf<T, R>()
