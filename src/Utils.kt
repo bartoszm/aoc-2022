@@ -34,4 +34,17 @@ class Memoize<in T, out R>(val f: (T) -> R) : (T) -> R {
     }
 }
 
+val LongRange.Companion.empty: LongRange
+    get() = LongRange(0, -1)
+
+fun LongRange.common(b: LongRange): LongRange {
+    val (first, second) = if (this.first < b.first) this to b else b to this
+    return if (second.first in first) {
+        val l = if (second.last > first.last) first.last else second.last
+        second.first..l
+    } else {
+        LongRange.empty
+    }
+}
+
 fun <T, R> ((T) -> R).memoize(): (T) -> R = Memoize(this)
